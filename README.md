@@ -51,7 +51,7 @@ secunda_test_task/
 ### 1. Клонирование репозитория
 
 ```bash
-git clone <URL_РЕПОЗИТОРИЯ>
+git clone https://github.com/slava225678/secunda_test_task.git
 cd secunda_test_task
 ```
 
