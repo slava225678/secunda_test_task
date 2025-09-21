@@ -1,0 +1,28 @@
+version: '3.8'
+
+volumes:
+  postgres_data:
+services:
+  db:
+    image: postgres:14.8
+    container_name: secunda_db  
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
+      POSTGRES_DB: ${POSTGRES_DB:-secunda_project}
+    ports:
+      - '5432:5432'
+    volumes:
+    - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  api:
+    build: .
+    container_name: secunda_api
+    ports:
+      - '8000:8000'
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql://admin:secret@localhost:5432/secunda_project}
+    depends_on:
+     - db
+    restart: always
