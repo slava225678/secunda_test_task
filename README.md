@@ -52,7 +52,7 @@ test_async/
 
 ```bash
 git clone https://github.com/slava225678/test_async.git
-cd secunda_test_task
+cd test_async
 ```
 
 ### 2. Настройка виртуального окружения (локально, без Docker)
@@ -72,10 +72,10 @@ pip install -r requirements.txt
 API_KEY="supersecretkey"
 
 # PostgreSQL
-DATABASE_URL=postgresql+asyncpg://admin:secret@db:5432/secunda_project
+DATABASE_URL=postgresql+asyncpg://admin:secret@db:5432/test_async
 POSTGRES_USER=admin
 POSTGRES_PASSWORD=secret
-POSTGRES_DB=secunda_project
+POSTGRES_DB=test_async
 POSTGRES_HOST=db
 POSTGRES_PORT=5432
 ```

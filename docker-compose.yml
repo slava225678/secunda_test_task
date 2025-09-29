@@ -5,11 +5,11 @@ volumes:
 services:
   db:
     image: postgres:14.8
-    container_name: secunda_db  
+    container_name: test_async_db  
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-admin}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secret}
-      POSTGRES_DB: ${POSTGRES_DB:-secunda_project}
+      POSTGRES_DB: ${POSTGRES_DB:-test_async}
     ports:
       - '5432:5432'
     volumes:
@@ -18,11 +18,11 @@ services:
 
   api:
     build: .
-    container_name: secunda_api
+    container_name: test_async_api
     ports:
       - '8000:8000'
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://admin:secret@localhost:5432/secunda_project}
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://admin:secret@localhost:5432/test_async}
     depends_on:
      - db
     restart: always

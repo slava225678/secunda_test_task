@@ -8,14 +8,20 @@ from app.services.base import CRUDBase
 
 
 class CRUDActivity(CRUDBase):
-    """CRUD для деятельностей с проверкой уровня вложенности (асинхронный)."""
+    """
+    CRUD для деятельностей с проверкой
+    уровня вложенности (асинхронный).
+    """
 
     async def create(
             self,
             obj_in: ActivityCreate,
             db: AsyncSession
     ) -> Activity:
-        """Создаёт активность с ограничением вложенности не более 3 уровней."""
+        """
+        Создаёт активность с ограничением
+        вложенности не более 3 уровней.
+        """
         parent_id = obj_in.parent_id
         if parent_id:
             depth = await self._get_depth(db, parent_id)

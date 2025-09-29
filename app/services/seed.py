@@ -79,7 +79,7 @@ async def seed_data(db: AsyncSession):
 
 
 async def main():
-    async with AsyncSessionLocal() as db:  # type: ignore
+    async with AsyncSessionLocal() as db:
         await seed_data(db)
 
 

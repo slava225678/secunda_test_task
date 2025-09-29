@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     API_KEY: str = "supersecretkey"
     postgres_user: str = 'admin'
     postgres_password: str = 'secret'
-    postgres_db: str = 'secunda_project'
+    postgres_db: str = 'test_async'
     postgres_host: str = 'db'
     postgres_port: int = 5432
 

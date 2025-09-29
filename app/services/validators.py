@@ -8,7 +8,10 @@ from app.models import Organization, Building, Activity
 async def check_organization_exists(
     db: AsyncSession, organization_id: int
 ) -> Organization:
-    result = await db.execute(select(Organization).where(Organization.id == organization_id))
+    result = await db.execute(
+        select(Organization)
+        .where(Organization.id == organization_id)
+    )
     org = result.scalars().first()
     if org is None:
         raise HTTPException(
@@ -18,8 +21,14 @@ async def check_organization_exists(
     return org
 
 
-async def check_organization_name_duplicate(db: AsyncSession, name: str) -> None:
-    result = await db.execute(select(Organization).where(Organization.name == name))
+async def check_organization_name_duplicate(
+        db: AsyncSession,
+        name: str
+) -> None:
+    result = await db.execute(
+        select(Organization)
+        .where(Organization.name == name)
+    )
     if result.scalars().first():
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -27,8 +36,14 @@ async def check_organization_name_duplicate(db: AsyncSession, name: str) -> None
         )
 
 
-async def check_building_exists(db: AsyncSession, building_id: int) -> Building:
-    result = await db.execute(select(Building).where(Building.id == building_id))
+async def check_building_exists(
+        db: AsyncSession,
+        building_id: int
+) -> Building:
+    result = await db.execute(
+        select(Building)
+        .where(Building.id == building_id)
+    )
     building = result.scalars().first()
     if building is None:
         raise HTTPException(
@@ -38,8 +53,14 @@ async def check_building_exists(db: AsyncSession, building_id: int) -> Building:
     return building
 
 
-async def check_building_address_duplicate(db: AsyncSession, address: str) -> None:
-    result = await db.execute(select(Building).where(Building.address == address))
+async def check_building_address_duplicate(
+        db: AsyncSession,
+        address: str
+) -> None:
+    result = await db.execute(
+        select(Building)
+        .where(Building.address == address)
+    )
     if result.scalars().first():
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -47,8 +68,14 @@ async def check_building_address_duplicate(db: AsyncSession, address: str) -> No
         )
 
 
-async def check_activity_exists(db: AsyncSession, activity_id: int) -> Activity:
-    result = await db.execute(select(Activity).where(Activity.id == activity_id))
+async def check_activity_exists(
+        db: AsyncSession,
+        activity_id: int
+) -> Activity:
+    result = await db.execute(
+        select(Activity)
+        .where(Activity.id == activity_id)
+    )
     activity = result.scalars().first()
     if activity is None:
         raise HTTPException(
@@ -58,8 +85,14 @@ async def check_activity_exists(db: AsyncSession, activity_id: int) -> Activity:
     return activity
 
 
-async def check_activity_name_duplicate(db: AsyncSession, name: str) -> None:
-    result = await db.execute(select(Activity).where(Activity.name == name))
+async def check_activity_name_duplicate(
+        db: AsyncSession,
+        name: str
+) -> None:
+    result = await db.execute(
+        select(Activity)
+        .where(Activity.name == name)
+    )
     if result.scalars().first():
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,

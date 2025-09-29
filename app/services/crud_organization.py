@@ -46,7 +46,10 @@ class CRUDOrganization(CRUDBase):
 
         # добавление телефонов
         for phone in obj_in.phones or []:
-            org_phone = OrganizationPhone(phone_number=phone, organization=org)
+            org_phone = OrganizationPhone(
+                phone_number=phone,
+                organization=org
+            )
             db.add(org_phone)
         await db.commit()
         await db.refresh(org)
@@ -60,7 +63,8 @@ class CRUDOrganization(CRUDBase):
     ) -> list[Organization]:
         """Получить все организации в конкретном здании."""
         result = await db.execute(
-            select(Organization).where(Organization.building_id == building_id)
+            select(Organization)
+            .where(Organization.building_id == building_id)
         )
         return result.scalars().all()
 
@@ -93,7 +97,10 @@ class CRUDOrganization(CRUDBase):
         )
         activity = result.scalars().first()
         if not activity:
-            raise HTTPException(status_code=404, detail="Activity not found")
+            raise HTTPException(
+                status_code=404,
+                detail="Activity not found"
+            )
 
         # собираем id всех вложенных активностей (до 3 уровня)
         def collect_ids(act: Activity, level=1, max_level=3):
