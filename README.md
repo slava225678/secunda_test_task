@@ -1,4 +1,4 @@
-# Secunda Test Task
+# Test async
 
 REST API для справочника **Организаций, Зданий и Видов деятельности**.
 Проект реализован на **FastAPI + SQLAlchemy + Alembic + PostgreSQL** и завернут в Docker.
@@ -8,7 +8,7 @@ REST API для справочника **Организаций, Зданий и
 ## Структура проекта
 
 ```
-secunda_test_task/
+test_async/
 │
 ├── app/                   # Основное приложение
 │   ├── core/              # Конфигурации и база
@@ -51,7 +51,7 @@ secunda_test_task/
 ### 1. Клонирование репозитория
 
 ```bash
-git clone https://github.com/slava225678/secunda_test_task.git
+git clone https://github.com/slava225678/test_async.git
 cd secunda_test_task
 ```
 
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 API_KEY="supersecretkey"
 
 # PostgreSQL
-DATABASE_URL=postgresql://admin:secret@db:5432/secunda_project
+DATABASE_URL=postgresql+asyncpg://admin:secret@db:5432/secunda_project
 POSTGRES_USER=admin
 POSTGRES_PASSWORD=secret
 POSTGRES_DB=secunda_project
@@ -132,3 +132,4 @@ python -m app.services.seed
 * **Alembic** — миграции
 * **PostgreSQL** — база данных
 * **Docker / docker-compose** — контейнеризация
+
